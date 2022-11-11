@@ -1,0 +1,18 @@
+.plusbutton {
+    padding: 10px 15px;
+    margin: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.75);
+    border-radius: 10px;
+    background: rgba(100, 100, 255, 0.8);
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.plusbutton:hover {
+    background: inherit;
+    color: white;
+}
+
+.cards {
+    margin-top: 100px;
+}

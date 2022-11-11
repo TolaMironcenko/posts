@@ -1,23 +1,59 @@
-import logo from './logo.svg';
-import './App.css';
+import './css/App.css';
+import Card from './components/Card/Card';
+import Navbar from './components/Navbar/Navbar';
+import AddCardForm from './components/AddCardForm/AddCardForm';
+import { useEffect, useState } from 'react';
+import routes from './routes';
 
 function App() {
+
+  const [posts, setPosts] = useState([]);
+  const [activeaddpost, setActiveaddpost] = useState(false);
+
+  useEffect(() => {
+    fetch(routes.posts())
+    .then(res => res.json())
+    .then(result => {
+      setPosts(result);
+    })
+  }, [])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+      <Navbar>
+        <button 
+          className='plusbutton'
+          onClick={() =>{
+            setActiveaddpost(true);
+          }}
         >
-          Learn React
-        </a>
-      </header>
+            &#43;
+        </button>
+      </Navbar>
+      {
+        activeaddpost
+        ?<AddCardForm 
+          setActiveaddpost={setActiveaddpost}
+          setPosts={setPosts}
+          posts={posts}
+        />
+        :<></>
+      }
+      <div className='cards'>
+      {
+        posts.length === 0
+        ? <></>
+        : posts.map(post => {
+          return(
+            <Card 
+              key={post.id}
+              title={post.title} 
+              body={post.body}
+            />
+          )
+        })
+      }
+      </div>
     </div>
   );
 }

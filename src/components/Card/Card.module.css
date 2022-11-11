@@ -1,0 +1,25 @@
+.card {
+    background: rgba(100, 100, 100, 0.6);
+    margin: 10px;
+    padding: 10px 25px;
+    border: 1px solid rgba(255, 255, 255, 0.75);
+    border-radius: 10px;
+    transition: 0.3s;
+    animation: cardani 0.3s;
+}
+
+.card:hover {
+    background: rgba(100, 255, 100, 0.6);
+}
+
+@keyframes cardani {
+    from {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
